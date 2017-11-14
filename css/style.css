@@ -1,0 +1,194 @@
+
+body {
+    background-color: rgba(255, 230, 156, 0.53);
+  }
+
+h1, h2, h3 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #775f5f;
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+  }
+
+h1 {
+    font-size: 2em;
+    border-bottom: 2px dashed;
+  }
+
+h2 {
+    font-size: 1.2em;
+  }
+
+h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
+    color: #6b0d6b;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  }
+
+/*de aqui hasta el proximo comentario, son todos estilo para el HEADER*/
+header, .navbar-default {
+  background-color: rgba(255, 193, 7, 0.1);
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: #775f5f;
+  /*padding: 2%;*/
+  text-align: center;
+}
+
+div.imgPlatos{
+  margin-top: 5%;
+  }
+
+
+input.imagen {
+  margin-bottom: 30px;
+}
+
+div.logo{
+ text-align:center;
+ padding-left: 2%;
+ padding-bottom: 1%;
+}
+
+img.logo {
+      width: 100%;
+}
+
+img.social2 {
+    width: 3%;
+    height: auto;
+  }
+
+form.agregarComentario {
+  padding-top: 5%;
+}
+ul li button { /*letra de la barra de navegacion */
+  border: 2px;
+  background-color: rgba(255, 193, 7, 0);
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+
+ div.direccion { /*para alinear la direccion con el logo*/
+  padding-top: 5%;
+  /*padding-left: 20%;*/
+}
+
+
+/*de aqui hasta el proximo comentario, son todos estilo para el FOOTER*/
+footer p {
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  text-shadow: 2;
+}
+
+img.social {  /*son los link de facebock, instagram, etc del footer-center*/
+  height: 30px;
+  width: 30px;
+}
+
+p.invitacion {
+  margin: 8%;
+}
+
+div.footer-center ul {
+  list-style: none;
+  margin-left: 45px;
+  margin-top: 25%;
+}
+
+div.footer-center ul li {
+   float: left;
+   margin-bottom: 10%;
+   padding: 15px;
+}
+
+/*de aqui hasta el proximo comentario, son todos estilo para el CUERPO*/
+div.cuerpo {
+   text-align: justify;
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-size: 1.1em;
+   padding: 5%;
+   text-transform: capitalize;
+}
+
+div.render {
+ border-bottom: 2px dashed;
+
+}
+
+ p.presentacion { /*para modificar estilo parrafo del index.html*/
+    text-align: center;
+    margin-top: 5%;
+    font-family: monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-bottom: 10%;
+}
+
+li.valores {
+  padding: 1%;
+}
+
+span.valor { /*span que resalta el valor en la pagina de descripcion de la empresa*/
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #6b0d6b;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+form { /*estilo del formulario de contacto*/
+  margin-top: 1%;
+  text-transform: uppercase;
+  color: #6b0d6b;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+button.formulario {
+  margin-top: 10%;
+  background-color: rgba(255, 193, 7, 0.13);
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  width: 60%;
+  padding: 1%;
+  margin-bottom: 5%;
+  box-sizing: border-box;
+  margin-top: 5%;
+}
+
+table.menu {
+  border-collapse: collapse;
+  width: 100%;
+    /*padding-bottom: : 30%;*/
+}
+
+td.celda_plato {
+  width: 70%;
+  border: 1px;
+  align-content: center;
+}
+
+td.celda_precio, td.celda_boton {
+  width: 10%;
+  border-bottom: 1px;
+}
+
+div.pie {
+  margin-top: 5%;
+  background-color: rgba(255, 193, 7, 0.1);
+  height: 25%;
+}

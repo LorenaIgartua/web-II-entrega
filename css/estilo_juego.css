@@ -1,0 +1,50 @@
+
+body {
+    background-color: rgba(255, 230, 156, 0.53);
+  }
+
+  .titulos, .credito, .comentario{
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-weight: bolder;
+      text-transform: uppercase;
+      color: #775f5f;
+      padding: 30px 20px 20px 20px;
+      text-align: center;
+    }
+
+.contenedor {
+    text-align:center;
+  }
+
+input.check_especial {
+  width: 80px;
+	height: 20px;
+
+  }
+
+  .opciones_de_juego_no{
+    display: none;
+
+  }
+  .opciones_de_juegoo{
+    
+  }
+
+table, table th, p {
+        margin: auto;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 1.1em;
+        border-collapse: collapse;
+        text-align: center;
+        width: 60%;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+}
+
+table td, table th  {
+        border: solid 2px;
+        padding: 3px;
+        width: 30%;
+}
