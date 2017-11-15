@@ -17,7 +17,7 @@ function __construct()
 function mostrarLogin($error = '')
   {
   $this->smarty->assign('error', $error);
-  return $this->smarty->display('templates/login.tpl');
+  return $this->smarty->display('templates/login/login.tpl');
   }
 
 }

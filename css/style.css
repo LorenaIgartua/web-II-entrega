@@ -182,6 +182,10 @@ td.celda_plato {
   align-content: center;
 }
 
+td#plato {
+  padding-left: 3%;
+}
+
 td.celda_precio, td.celda_boton {
   width: 10%;
   border-bottom: 1px;

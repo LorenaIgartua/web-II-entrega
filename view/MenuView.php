@@ -4,7 +4,7 @@ class MenuView extends View
 
 	{
 
-	function mostrarMenuAdmin($tipos, $platos, $error = '')
+	function mostrarMenuAdmin ($tipos, $platos, $error = '')
 	{
 		$this->smarty->assign('tipos', $tipos);
 		$this->smarty->assign('platos', $platos);
@@ -12,11 +12,11 @@ class MenuView extends View
 		$this->smarty->display('templates/menuAdmin.tpl');
 	}
 
-	function mostrarModificarPlatoAdmin($tipos, $plato, $error = '', $comentarios)
+	function mostrarModificarPlatoAdmin($tipo, $plato, $error = '', $comentarios)
 	{
-		$this->smarty->assign('tipos', $tipos);
-		$this->smarty->assign('plato', $plato);
+		$this->smarty->assign('tipos', $tipo);
 		$this->smarty->assign('error', $error);
+		$this->smarty->assign('plato', $plato);
 		$this->smarty->assign('comentarios', $comentarios);
 		$this->smarty->display('templates/formModificarPlato.tpl');
 	}

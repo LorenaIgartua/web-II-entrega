@@ -11,7 +11,7 @@ class LoginApiController extends Api
 	{
 	function __construct()
 		{
-		$this->cierre = new RisottoApiController();
+
 		$this->view = new LoginApiView();
 		$this->model = new LoginModel();
 		}
@@ -32,9 +32,8 @@ class LoginApiController extends Api
 			if ((!empty($user)) && password_verify($password, $user[0]['password']))
 				{
 				session_start();
-				$_SESSION['USER'] = $user[0]['id_usuario'];
+				$_SESSION['USER'] = $userName;
 				$_SESSION['LAST_ACTIVITY'] = time();
-				$_SESSION['PERFIL'] = $user[0]['perfil'];
 				header('Location: ' . COMENTARIOS);
 				}
 			  else
@@ -48,7 +47,8 @@ class LoginApiController extends Api
 		{
 		session_start();
 		session_destroy();
-		$this->cierre->home();
+			header('Location: ' . INICIOSESION);
+		die();
 		}
 
 

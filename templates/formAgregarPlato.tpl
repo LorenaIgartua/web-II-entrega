@@ -22,7 +22,7 @@
    <label for="exampleInputName2" class="control-label">Ingredientes</label>
    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingredientes">
    <label for="exampleInputName2" class="control-label">Precio</label>
-   <input type="text" class="form-control" id="valor" name="valor" placeholder="precio"> -->
+   <input type="text" class="form-control" id="valor" name="valor" placeholder="precio"> 
 
 
     <label for="exampleInputName2" class=" control-label">Imagenes</label>

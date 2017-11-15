@@ -42,7 +42,5 @@
   <ul class="list-group">
     {include file="adminComentarios.tpl"}
   </ul>
-</div>
-{include file="formAgregarComentarioUsuario.tpl"}
- </div>
+
 </div>

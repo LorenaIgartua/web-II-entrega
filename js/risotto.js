@@ -8,13 +8,6 @@ $(document).ready(function() {
 });
 
 
-$(document).on("click", ".eliminarComentario", function(event) {
-    event.preventDefault();
-      let id_comentario = $(this).attr('name');
-      let id_plato = $(this).data('idplato');
-      borrarComentario(id_comentario, id_plato);
-});
-
 
 
 let templateComentario;
@@ -25,6 +18,7 @@ function cargarComentarios(id_plato) {
           .done(function(response) {
               $('li.rest').remove();
               let rendered = Mustache.render(templateComentario, {arreglo:response.comentarios});
+              // alert (rendered);
               $('#comentarios').append(rendered);
           })
           .fail(function() {
@@ -32,52 +26,18 @@ function cargarComentarios(id_plato) {
           });
   }
 
-  // function cargarComentariosUsuario(id_plato) {
-  //       $.ajax("api/comentarios/" + id_plato )
-  //           .done(function(response) {
-  //               $('li.rest').remove();
-  //               let rendered = Mustache.render(templateComentario, {arreglo:response.comentarios});
-  //               $('#comentarios').append(rendered);
-  //               $('.eliminarComentario').hide();
-  //           })
-  //           .fail(function() {
-  //               $('#comentarios').append('<li>Imposible cargar la lista de comentarios</li>');
-  //           });
-  //   }
-
-  function borrarComentario(id_comentario, id_plato) {
-      $.ajax({
-          method: "DELETE",
-          url: "api/comentarios/" + id_comentario
-        })
-      .done(function() {
-          cargarComentarios(id_plato)
-        })
-      .fail(function() {
-          alert('Imposible borrar el comentario');
-      });
-  }
-
-  // function crearComentario() {
-  //     let comentario = {
-  //       "id_plato": $('#id_plato').val(),
-  //       "id_usuario": $('#id_usuario').val(),
-  //       "opinion": $('#opinion').val(),
-  //       "puntaje":  $('input:radio[name=puntaje]:checked').val()
-  //     };
-  //     // alert(id_usuario);
-  //   $.ajax({
-  //           method: "POST",
-  //           url: "api/comentarios",
-  //           data: JSON.stringify(comentario)
-  //         })
-  //       .done(function(response) {
-  //             cargarComentarios($('#id_plato').val())
+  // function borrarComentario(id_comentario, id_plato) {
+  //     $.ajax({
+  //         method: "DELETE",
+  //         url: "api/comentarios/" + id_comentario
   //       })
-  //       .fail(function(data) {
-  //           alert('Imposible mandar el comentario');
-  //       });
-  //   }
+  //     .done(function() {
+  //         cargarComentarios(id_plato)
+  //       })
+  //     .fail(function() {
+  //         alert('Imposible borrar el comentario');
+  //     });
+  // }
 
   function crearComentario() {
       let comentario = {
@@ -87,12 +47,14 @@ function cargarComentarios(id_plato) {
         "opinion": $('#opinion').val(),
         "puntaje":  $('input:radio[name=puntaje]:checked').val()
       };
+      // alert (comentario);
     $.ajax({
             method: "POST",
             url: "api/comentarios",
             data: JSON.stringify(comentario)
           })
         .done(function(response) {
+          // alert ($('#id_plato').val());
               cargarComentarios($('#id_plato').val())
         })
         .fail(function(data) {
@@ -170,6 +132,15 @@ $(document).on("click", ".eliminarUsuario", function(event) {
     });
 });
 
+
+$(document).on("click", ".eliminarComentario", function(event) {
+    event.preventDefault();
+    renderPost("eliminarComentario", {
+        "id_comentario": $(this).attr('name'),
+          "id_plato": $(this).data('idplato')
+    });
+});
+
 $(document).on("click", ".editarUsuario", function(event) {
     event.preventDefault();
     // alert ($(this).attr('name'));
@@ -181,7 +152,8 @@ $(document).on("click", ".editarUsuario", function(event) {
 $(document).on("click", ".eliminarImagen", function(event) {
     event.preventDefault();
     renderPost("eliminarImagen", {
-        "id_imagen": $(this).attr('name')
+        "id_imagen": $(this).attr('name'),
+        "id_plato": $(this).data('idplato')
     });
 });
 

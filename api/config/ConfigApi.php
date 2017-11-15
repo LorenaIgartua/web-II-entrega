@@ -6,10 +6,11 @@ class ConfigApi
     public static $RESOURCES = [
 
       'comentarios#POST'=> 'RisottoApiController#agregarComentario',
-      // 'comentarios#DELETE'=> 'RisottoApiController#borrarComentario',
+      'comentarios#DELETE'=> 'RisottoApiController#borrarComentario',
       'comentarios#GET'=> 'RisottoApiController#obtenerComentarios',
-      'iniciarSesion#GET' => 'LoginApiController#iniciarSesion',
-      'registrar#GET'=> 'LoginApiController#verificarUsuario'
+      'login#GET' => 'LoginApiController#iniciarSesion',
+      'verificarUsuario#POST'=> 'LoginApiController#verificarUsuario',
+      'logout#GET'=> 'LoginApiController#cerrarSesion'
 
     ];
 }

@@ -1,5 +1,5 @@
 
-<form action="captcha.php" class="agregarComentario form-horizontal" method="post" >
+<form  class="agregarComentario form-horizontal" method="post" >
   <input type="hidden" id="id_usuario" value="{$usuario}">
    <input type="hidden" id="id_plato" value="{$plato[0]['id_plato']}">
 
@@ -16,7 +16,7 @@
    <label class="radio-inline "><input class="puntaje"  type="radio" name="puntaje" value= "4">4</label>
    <label class="radio-inline "><input class="puntaje"  type="radio" name="puntaje" value= "5">5</label>
   </div>
-  
+
   <div class="form-group row">
     <label for="exampleFormControlFile1">Introzca el resultado de la suma para continuar...</label>
   </div>

@@ -1,39 +1,26 @@
 <?php
 
-class ApiSeguridadController extends Controller
+class SeguridadApiController extends Api
 
+{
+function __construct()
 	{
-	function __construct()
+	session_start();
+	if (isset($_SESSION['USER']))
 		{
-		// session_start();
-		if (isset($_SESSION['USER']))
-			{
-						if (time() - $_SESSION['LAST_ACTIVITY'] > 1)
-							{
-							header('Location: ' . CERRARSESION);
-							die();
-							}
-						$_SESSION['LAST_ACTIVITY'] = time();
-						}
-					 else
+					if (time() - $_SESSION['LAST_ACTIVITY'] > 5000000)
 						{
-						header('Location: ' . INICIOSESION);
+						header('Location: ' . LOGOUT);
 						die();
 						}
+					$_SESSION['LAST_ACTIVITY'] = time();
 		}
-
-		function admin()
-			{
-			if ($_SESSION['PERFIL'] == ADMIN)
-			{
-				return true;
-			}
-			else
-		  {
-		  return false;
-		  }
+	 else
+		{
+				header('Location: ' . INICIOSESION);
+				die();
 		}
-
+	}
 
 }
 ?>

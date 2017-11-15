@@ -23,6 +23,7 @@ class ConfigApp
       'eliminarImagen' => 'AdministradorController#eliminarImagen',
       'cargarPlato' => 'AdministradorController#cargarPlato', /// este es el que carga el formulario
       'actualizarPlato' => 'AdministradorController#actualizarPlato',
+      'eliminarComentario' => 'AdministradorController#eliminarComentario', 
 
       'nuevoMenu' => 'AdministradorController#nuevoMenu',
       'agregarMenu' => 'AdministradorController#agregarMenu',

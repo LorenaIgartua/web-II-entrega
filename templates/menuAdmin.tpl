@@ -16,6 +16,10 @@
          {foreach from=$platos item=plato}
          {if ($plato['id_menu']==$tipo['id_menu'])}
          <tr>
+            <td celda_boton>
+             <button type="button" class="btn btn-warning  verPlato" name= "{$plato['id_plato']}" > VER </button>
+
+             </td>
             <td id="plato" class = "celda_plato" >
                <h4>{$plato['nombre']}</h4>
                <br>

@@ -1,38 +1,43 @@
 <?php
 
-define('COMENTARIOS', 'http://' . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) . 'api/comentarios/');
-
 require_once('Api.php');
 require_once('../model/ComentariosModel.php');
+require_once ('controller/SeguridadApiController.php');
+require_once ('view/LoginApiView.php');
+require_once ('controller/LoginApiController.php');
 
 class RisottoApiController extends Api
 {
   protected $model;
+  protected $view;
+  private $seguridadController;
 
   function __construct()
   {
     parent::__construct();
     $this->model = new ComentariosModel();
+    $this->view = new LoginApiView();
+    // $this->seguridadController = new SeguridadApiController();
   }
 
   public function obtenerComentarios ($url_params = [])
   {
-    $id_plato = $url_params [0];
-    $comentarios = $this->model->getComentarios($id_plato);
-    $response = new stdClass();
-    $response->comentarios = $comentarios;
-    $response->status = 200;
-    return $this->json_response($response, 200);
-  }
+    if (sizeof($url_params) == 1) {
+      $id_plato = $url_params [0];
+      $comentarios = $this->model->getComentarios($id_plato);
+      $response = new stdClass();
+      $response->comentarios = $comentarios;
+      $response->status = 200;
+      return $this->json_response($response, 200);
+    }
+    else {
+      $comentarios = $this->model->getTodoslosComentarios();
+      $response = new stdClass();
+      $response->comentarios = $comentarios;
+      $response->status = 200;
+      return $this->json_response($response, 200);
+    }
 
-  public function obtenerComentariosTotales()
-  {
-
-    $comentarios = $this->model->getTodoslosComentarios();
-    $response = new stdClass();
-    $response->comentarios = $comentarios;
-    $response->status = 200;
-    return $this->json_response($response, 200);
   }
 
   public function borrarComentario ($url_params = [])
@@ -60,16 +65,6 @@ class RisottoApiController extends Api
    }
  }
 
-  // public function agregarComentario($url_params = [])
-  // {
-  //   $body = json_decode($this->raw_data);
-  //   $id_plato = $body->id_plato;
-  //   $id_usuario = $body->id_usuario;
-  //   $opinion = $body->opinion;
-  //   $puntaje = $body->puntaje;
-  //   $comentario = $this->model->gravarComentario($id_plato, $id_usuario, $opinion, $puntaje);
-  //   return $this->json_response($comentario, 200);
-  // }
 
 }
 ?>

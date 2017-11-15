@@ -47,8 +47,9 @@ class RisottoController extends Controller
 
 		function menuUsuario()
 		{
-			 if (isset($_SESSION['USER']) &&(($_SESSION['PERFIL'] == ADMIN))) {
-			$this->admin->menuAdmin();
+			 if (isset($_SESSION['USER']) && ($_SESSION['PERFIL'] == ADMIN)) {
+				 $usuario = $_SESSION['USER'];
+				 $this->admin->menuAdmin($usuario);
 			 }
 			else {
 			$id_menu = isset($_POST['id_menu']) ? $_POST['id_menu'] : null;

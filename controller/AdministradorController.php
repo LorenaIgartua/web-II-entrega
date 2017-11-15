@@ -22,7 +22,7 @@ class AdministradorController extends Controller
 		// $this->seguridadController = new SeguridadController();
 	}
 
-	function menuAdmin()   /// muestra detalle de TODOS los platos al ADMINISTRADOR (incluye botones para editar y eliminar, y el navigationBarAdmin)
+	function menuAdmin($usuario)   /// muestra detalle de TODOS los platos al ADMINISTRADOR (incluye botones para editar y eliminar, y el navigationBarAdmin)
 	{
 		$id_menu = isset($_POST['id_menu']) ? $_POST['id_menu'] : null; // controlar
 		$platos = $this->platos->obtenerPlatos($id_menu);
@@ -35,29 +35,19 @@ class AdministradorController extends Controller
 		$this->view->mostrarMenuAdmin($tipos, $platos, $error = '');
 	}
 
-	function verPlatoRegistrado()   /// muestra el detalle de UN plato al Usuario
-	{
-		if (isset($_SESSION)) {
-			$id_plato = $_POST['id_plato'];
-			$plato = $this->platos->obtenerPlato($id_plato);
-			$tipos = $this->tipoMenu->obtenerTipoMenu();
-			$usuario = $_SESSION['USER'];
-			// echo ($usuario);
-			// die();
-			$this->view->mostrarVerPlatoUsuarioRegistrado($tipos, $plato, $usuario, $error = '');
-		}
-	}
-
-	function cargarPlato()   /// este es el que carga el formulario
+	function cargarPlato()   /// este es el que carga el formulario para su posterior modificacion
 	{
 			$id_plato = $_POST['id_plato'];
 			$plato = $this->platos->obtenerPlato($id_plato);
 			$tipo = $this->tipoMenu->obtenerTipoMenu();
 			$comentarios = $this->Comentarios->getComentarios($id_plato);
-			$this->view->mostrarModificarPlatoAdmin($tipo, $plato, $error = '', $comentarios);
+			// $usuario = $_SESSION['USER'];
+			// print_r ($comentarios);
+			// die();
+			$this->view->mostrarModificarPlatoAdmin ($tipo, $plato, $error = '', $comentarios);
 	}
 
-	function cargarMenu()     /// este es el que carga el formulario
+	function cargarMenu()     /// este es el que carga el formulario para su posterior modificacion
 	{
 		$id_menu = $_POST['id_menu'];
 		$menu = $this->tipoMenu->obtenerTipo($id_menu);
@@ -79,10 +69,8 @@ class AdministradorController extends Controller
 		$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : "";
 		$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 	 	$rutaTempImagenes = isset($_FILES['imagenes']['tmp_name']) ? $_FILES['imagenes']['tmp_name'] : "";
-		// print_r ($rutaTempImagenes);
-		// die();
-		if ( $nombre != "" ) { //hay plato
-
+		if ( $nombre != "" ) //hay plato
+		{
 						if ( !empty($rutaTempImagenes[0]) )      //hay imagenes
 						{
 							if ($this->sonJPG($_FILES['imagenes']['type'])) {
@@ -104,17 +92,17 @@ class AdministradorController extends Controller
 		$error = 'El plato debe tener un nombre';
 		$tipos = $this->tipoMenu->obtenerTipoMenu();
 		$this->view->mostrarAltaPlatoAdmin($tipos, $error);
- 		}
+	}
 
-		function sonJPG($imagenesTipos)
-		{
-			foreach ($imagenesTipos as $tipo) {
-				if($tipo != 'image/jpeg') {
-					return false;
-				}
+	function sonJPG($imagenesTipos)
+	{
+		foreach ($imagenesTipos as $tipo) {
+			if($tipo != 'image/jpeg') {
+				return false;
 			}
-			return true;
 		}
+		return true;
+	}
 
 	function eliminarPlato()
 	{
@@ -126,20 +114,12 @@ class AdministradorController extends Controller
 	function eliminarImagen()
 	{
 			$id_imagen = $_POST['id_imagen'];
+			$id_plato = $_POST['id_plato'];
 			$this->platos->eliminarImagen($id_imagen);
-			header('Location: ' . MENU);
-			// echo ($id_imagen);
-			// die();
-			// $imagen = $this->platos->obtenerImagenId($id_imagen);
-			// $id_plato = $this->platos->obtenerPlatoSegunImagen($id_imagen);
-			// print_r ($imagen);
-			// die();
-			// $plato = $this->platos->obtenerPlato($id_plato);
-			// print_r ($plato);
-			// die();
-			// $tipo = $this->tipoMenu->obtenerTipoMenu();
-			// $comentarios = $this->Comentarios->getComentarios($id_plato);
-			// $this->view->mostrarModificarPlatoAdmin($tipo, $plato, $error = '', $comentarios);
+			$plato = $this->platos->obtenerPlato($id_plato);
+			$tipo = $this->tipoMenu->obtenerTipoMenu();
+			$comentarios = $this->Comentarios->getComentarios($id_plato);
+			$this->view->mostrarModificarPlatoAdmin($tipo, $plato, $error = '', $comentarios);
 	}
 
 	function actualizarPlato()
@@ -174,17 +154,17 @@ class AdministradorController extends Controller
 		if ($this->platos->platosDisponiblesMenu($id_menu)[0]['count(*)'] == 0)
 			{
 				$this->tipoMenu->eliminarMenu($id_menu);
-				header('Location: ' . MENU);
+				$tipos = $this->tipoMenu->obtenerTipoMenu();
+				$platos = $this->platos->obtenerPlatos($id_menu);
+				$this->view->mostrarMenuAdmin ($tipos, $platos, $error = '');
 			}
 		 else
 			{
 				$error = 'La categoria no debe contener platos';
 				$tipos = $this->tipoMenu->obtenerTipoMenu();
-				$platos = $this->platos->obtenerPlatos($id_menu);
-				$this->view->mostrarMenuAdmin($tipos, $platos, $error);
+				$platos = $this->platos->obtenerPlatos($id_menu = '');
+				$this->view->mostrarMenuAdmin ($tipos, $platos, $error);
 			}
-
-
 	}
 
 	function actualizarMenu()
@@ -211,6 +191,18 @@ class AdministradorController extends Controller
 		$this->usuarios->eliminarUsuario($id_usuario);
 		}
 			$this->administrarUsuarios();
+	}
+
+	function eliminarComentario()
+	{
+		$id_comentario = $_POST['id_comentario'];
+		$id_plato = $_POST['id_plato'];
+		$this->Comentarios->deleteComentario ($id_comentario);
+		$plato = $this->platos->obtenerPlato($id_plato);
+		$tipo = $this->tipoMenu->obtenerTipoMenu();
+		$comentarios = $this->Comentarios->getComentarios($id_plato);
+		$this->view->mostrarModificarPlatoAdmin($tipo, $plato, $error = '', $comentarios);
+
 	}
 
 	function editarUsuario()
