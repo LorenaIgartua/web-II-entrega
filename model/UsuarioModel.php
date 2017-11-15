@@ -1,7 +1,7 @@
 
 
 <?php
-class LoginModel extends Model
+class UsuarioModel extends Model
 
 {
 function getUser($userName)

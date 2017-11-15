@@ -3,7 +3,7 @@
 include_once 'view/MenuView.php';
 include_once 'model/TipoMenuModel.php';
 include_once 'model/PlatoMenuModel.php';
-include_once 'model/LoginModel.php';
+include_once 'model/UsuarioModel.php';
 include_once 'model/ComentariosModel.php';
 include_once 'controller/SeguridadController.php';
 
@@ -18,7 +18,7 @@ class AdministradorController extends Controller
 		$this->Comentarios = new ComentariosModel();
 		$this->tipoMenu = new TipoMenuModel();
 		$this->platos = new PlatoMenuModel();
-		$this->usuarios = new LoginModel();
+		// $this->usuarios = new UsuarioModel();
 		$this->seguridadController = new SeguridadController();
 	}
 
@@ -26,7 +26,7 @@ class AdministradorController extends Controller
 
 	function menuAdmin()   /// muestra detalle de TODOS los platos al ADMINISTRADOR (incluye botones para editar y eliminar, y el navigationBarAdmin)
 	{
-		// $this->seguridadController->esAdmin(); // si NO sos ADMIN, cierra la sesion y te muestra menu comun
+		$this->seguridadController->esAdmin(); // si NO sos ADMIN, cierra la sesion y te muestra menu comun
 		$id_menu = isset($_POST['id_menu']) ? $_POST['id_menu'] : null; // controlar
 		$platos = $this->platos->obtenerPlatos($id_menu);
 		if ($id_menu == null) {
@@ -165,7 +165,7 @@ class AdministradorController extends Controller
 			{
 				$this->tipoMenu->eliminarMenu($id_menu);
 				$tipos = $this->tipoMenu->obtenerTipoMenu();
-				$platos = $this->platos->obtenerPlatos($id_menu);
+				$platos = $this->platos->obtenerPlatos($id_menu = '');
 				$this->view->mostrarMenuAdmin ($tipos, $platos, $error = '');
 			}
 		 else
@@ -233,6 +233,14 @@ class AdministradorController extends Controller
 		}
 		$this->administrarUsuarios();
 	}
+
+
+		function nuevoComentario()
+		{
+			$this->seguridadController->esUser();
+			$id_plato = $_POST['id_plato'];
+			$this->view->mostrarFormComentario($id_plato);
+		}
 
 }
 ?>

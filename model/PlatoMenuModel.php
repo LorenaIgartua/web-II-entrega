@@ -42,19 +42,19 @@ class PlatoMenuModel extends Model
 		 return $rutas;
 	  }
 
-		function agregarPlato($id_menu, $nombre, $descripcion, $valor, $rutaTempImagenes)
-		{
-				$sentencia = $this->db->prepare("INSERT INTO plato (id_menu, nombre, descripcion, valor) VALUES (?,?,?,?)");
-				$sentencia->execute([$id_menu, $nombre, $descripcion, $valor]);
-				$id_plato = $this->db->lastInsertId();
-				$rutas = $this->subirImagenes($rutaTempImagenes);
-				if(!empty($rutas)){
-								$sentencia = $this->db->prepare("INSERT INTO imagen(id_plato, url) VALUES (?,?)");
-								foreach ($rutas as $ruta) {
-									$sentencia->execute([$id_plato,$ruta]);
-									}
-					}
+	function agregarPlato($id_menu, $nombre, $descripcion, $valor, $rutaTempImagenes)
+	{
+			$sentencia = $this->db->prepare("INSERT INTO plato (id_menu, nombre, descripcion, valor) VALUES (?,?,?,?)");
+			$sentencia->execute([$id_menu, $nombre, $descripcion, $valor]);
+			$id_plato = $this->db->lastInsertId();
+			$rutas = $this->subirImagenes($rutaTempImagenes);
+			if(!empty($rutas)){
+							$sentencia = $this->db->prepare("INSERT INTO imagen(id_plato, url) VALUES (?,?)");
+							foreach ($rutas as $ruta) {
+								$sentencia->execute([$id_plato,$ruta]);
+								}
 				}
+		}
 
 	function actualizarPlato($id_menu, $nombre, $descripcion, $valor, $id_plato, $rutaTempImagenes)
 		{
@@ -81,16 +81,6 @@ class PlatoMenuModel extends Model
 		$sentencia->execute([$id_imagen]);
 	}
 
-	// function obtenerImagenId($id_imagen)
-	// {
-	// 		$sentencia = $this->db->prepare('SELECT * from imagen where id_imagen = $id_imagen');
-	// 		// $imagen = $sentencia->execute([$id_imagen]);
-	// 		print_r ($sentencia);
-	// 		die();
-	// 		return $sentencia;
-  //
-	// }
-
 	function obtenerPlato($id_plato)
 		{
 			$sentencia = $this->db->prepare("Select * from plato where id_plato = ?");
@@ -110,8 +100,5 @@ class PlatoMenuModel extends Model
 		return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 		}
 	}
-
-
-
 
 ?>

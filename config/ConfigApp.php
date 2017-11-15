@@ -9,13 +9,13 @@ class ConfigApp
       'home' =>  'RisottoController#home',
       'nosotros' =>  'RisottoController#nosotros',
       'menuUsuario' =>  'RisottoController#menuUsuario',
-      'nuevoComentario' => 'UsuarioController#nuevoComentario',
+      'nuevoComentario' => 'AdministradorController#nuevoComentario',
       'menuAdmin' =>  'AdministradorController#menuAdmin',
       'verPlato' => 'RisottoController#verPlato',
       'contacto' =>  'RisottoController#contacto',
-      'iniciarSesion' =>  'LoginController#iniciarSesion',
-      'verificarUsuario' =>  'LoginController#verificarUsuario',
-      'cerrarSesion' => 'LoginController#cerrarSesion',
+      'iniciarSesion' =>  'UsuarioController#iniciarSesion',
+      'verificarUsuario' =>  'UsuarioController#verificarUsuario',
+      'cerrarSesion' => 'UsuarioController#cerrarSesion',
 
       'nuevoPlato' => 'AdministradorController#nuevoPlato',
       'agregarPlato' => 'AdministradorController#agregarPlato',
@@ -23,7 +23,7 @@ class ConfigApp
       'eliminarImagen' => 'AdministradorController#eliminarImagen',
       'cargarPlato' => 'AdministradorController#cargarPlato', /// este es el que carga el formulario
       'actualizarPlato' => 'AdministradorController#actualizarPlato',
-      'eliminarComentario' => 'AdministradorController#eliminarComentario', 
+      'eliminarComentario' => 'AdministradorController#eliminarComentario',
 
       'nuevoMenu' => 'AdministradorController#nuevoMenu',
       'agregarMenu' => 'AdministradorController#agregarMenu',
@@ -31,8 +31,8 @@ class ConfigApp
       'cargarMenu' => 'AdministradorController#cargarMenu', /// este es el que carga el formulario
       'actualizarMenu' => 'AdministradorController#actualizarMenu',
 
-      'nuevoUsuario' => 'LoginController#nuevoUsuario',
-      'registrar' => 'LoginController#registrar',
+      'nuevoUsuario' => 'UsuarioController#nuevoUsuario',
+      'registrar' => 'UsuarioController#registrar',
       'administrarUsuarios' => 'AdministradorController#administrarUsuarios',
       'editarUsuario' => 'AdministradorController#editarUsuario',
       'eliminarUsuario' => 'AdministradorController#eliminarUsuario'

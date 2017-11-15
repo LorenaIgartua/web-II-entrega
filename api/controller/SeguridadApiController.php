@@ -8,7 +8,7 @@ function __construct()
 	session_start();
 	if (isset($_SESSION['USER']))
 		{
-					if (time() - $_SESSION['LAST_ACTIVITY'] > 5000000)
+					if (time() - $_SESSION['LAST_ACTIVITY'] > 30)
 						{
 						header('Location: ' . LOGOUT);
 						die();

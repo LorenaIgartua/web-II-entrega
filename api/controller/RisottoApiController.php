@@ -17,7 +17,7 @@ class RisottoApiController extends Api
     parent::__construct();
     $this->model = new ComentariosModel();
     $this->view = new LoginApiView();
-    // $this->seguridadController = new SeguridadApiController();
+    $this->seguridadController = new SeguridadApiController();
   }
 
   public function obtenerComentarios ($url_params = [])
@@ -55,7 +55,7 @@ class RisottoApiController extends Api
    $id_usuario = $body->id_usuario;
    $opinion = $body->opinion;
    $puntaje = $body->puntaje;
-   session_start();
+   // session_start();
    if ($captcha == $_SESSION["ResultadoCaptcha"]) {
      $comentario = $this->model->gravarComentario($id_plato, $id_usuario, $opinion, $puntaje);
      return $this->json_response($comentario, 200);
@@ -64,7 +64,6 @@ class RisottoApiController extends Api
        return $this->json_response(false, 404);
    }
  }
-
 
 }
 ?>
