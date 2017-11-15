@@ -32,10 +32,11 @@ class RisottoView extends View
 		}
 
 
-	function mostrarVerPlatoUsuario($tipos, $plato, $error = '')
+	function mostrarVerPlatoUsuario ($tipos, $plato, $error = '', $comentarios)
 			{
 
 			$this->smarty->assign('tipos', $tipos);
+			$this->smarty->assign('comentarios', $comentarios);
 			$this->smarty->assign('plato', $plato);
 			$this->smarty->assign('error', $error);
 			$this->smarty->display('templates/verPlatoUsuario.tpl');

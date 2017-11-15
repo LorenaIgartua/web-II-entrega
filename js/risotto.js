@@ -7,23 +7,28 @@ $(document).ready(function() {
     });
 });
 
-
-
+let recarga;
 
 let templateComentario;
 $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentario = template);
 
+
 function cargarComentarios(id_plato) {
-      $.ajax("api/comentarios/" + id_plato )
-          .done(function(response) {
-              $('li.rest').remove();
-              let rendered = Mustache.render(templateComentario, {arreglo:response.comentarios});
-              // alert (rendered);
-              $('#comentarios').append(rendered);
-          })
-          .fail(function() {
-              $('#comentarios').append('<li>Imposible cargar la lista de comentarios</li>');
-          });
+      clearInterval(recarga);
+      function repetir () {
+        $.ajax("api/comentarios/" + id_plato )
+            .done(function(response) {
+                $('li.rest').remove();
+                let rendered = Mustache.render(templateComentario, {arreglo:response.comentarios});
+                $('#comentarios').append(rendered);
+            })
+            .fail(function() {
+                $('#comentarios').append('<li>Imposible cargar la lista de comentarios</li>');
+            });
+        // alert ("no entiendo");
+      }
+      repetir();
+      recarga = setInterval(repetir, 2000);
   }
 
   // function borrarComentario(id_comentario, id_plato) {
@@ -247,7 +252,6 @@ $(document).on("click", ".verPlato", function(event) {
     },  function() {
           cargarComentarios(id);
     });
-    // setInterval(cargarComentariosUsuario(id), 3);
 });
 
 $(document).on("click", ".cargarPlato", function(event) {
@@ -281,8 +285,3 @@ $(document).on("submit", "#filtro", function(event) {
     event.preventDefault();
     renderPost("menuUsuario", $(this).serialize());
 });
-//
-// $(document).on("submit", "#filtroAdm", function(event) {
-//     event.preventDefault();
-//     renderPost("menuAdmin", $(this).serialize());
-// });

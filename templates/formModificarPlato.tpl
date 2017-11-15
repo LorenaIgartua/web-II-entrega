@@ -28,14 +28,14 @@
    <label for="exampleInputName2" class=" control-label">Imagenes</label>
    <input class= "imagen " type="file" id="imagenes" name="imagenes[]" multiple>
 
-   <button type="submit" class="btn btn-warning" >Modificar</button>
+
+
+   <div id="imagenesRender">
+   {include file="imagenes.tpl"}
+   </div>
+   <button type="submit" class="btn btn-warning" > Guardar Plato </button>
 </form>
 
-<div id="imagenesRender">
-
-
-{include file="imagenes.tpl"}
-</div>
 
 <div id="asd">
   <h4>Comentarios de nuestros clientes: </h3>

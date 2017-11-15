@@ -9,9 +9,9 @@ function __construct()
 
 		if (isset($_SESSION['USER']))
 		{
-				if (time() - $_SESSION['LAST_ACTIVITY'] > 30)
+				if (time() - $_SESSION['LAST_ACTIVITY'] > 200)
 				{
-					header('Location: ' . CERRARSESION);
+					header('Location: ' . CERRARSESIONTIEMPO);
 					die();
 				}
 				else
@@ -19,7 +19,6 @@ function __construct()
 				$_SESSION['LAST_ACTIVITY'] = time();
 				}
 		}
-
 }
 
 	function esAdmin()

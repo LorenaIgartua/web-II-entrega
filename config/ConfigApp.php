@@ -13,9 +13,7 @@ class ConfigApp
       'menuAdmin' =>  'AdministradorController#menuAdmin',
       'verPlato' => 'RisottoController#verPlato',
       'contacto' =>  'RisottoController#contacto',
-      'iniciarSesion' =>  'UsuarioController#iniciarSesion',
-      'verificarUsuario' =>  'UsuarioController#verificarUsuario',
-      'cerrarSesion' => 'UsuarioController#cerrarSesion',
+
 
       'nuevoPlato' => 'AdministradorController#nuevoPlato',
       'agregarPlato' => 'AdministradorController#agregarPlato',
@@ -35,7 +33,11 @@ class ConfigApp
       'registrar' => 'UsuarioController#registrar',
       'administrarUsuarios' => 'AdministradorController#administrarUsuarios',
       'editarUsuario' => 'AdministradorController#editarUsuario',
-      'eliminarUsuario' => 'AdministradorController#eliminarUsuario'
+      'eliminarUsuario' => 'AdministradorController#eliminarUsuario',
+      'iniciarSesion' =>  'UsuarioController#iniciarSesion',
+      'verificarUsuario' =>  'UsuarioController#verificarUsuario',
+      'cerrarSesion' => 'UsuarioController#cerrarSesion',
+      'cerrarSesionTiempo' => 'UsuarioController#cerrarSesionTiempo'
   ];
 }
 

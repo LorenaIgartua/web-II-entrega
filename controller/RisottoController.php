@@ -6,6 +6,7 @@ include_once 'view/RisottoView.php';
 include_once 'controller/SeguridadController.php';
 include_once 'model/PlatoMenuModel.php';
 include_once 'model/TipoMenuModel.php';
+include_once 'model/ComentariosModel.php';
 
 class RisottoController extends Controller
 	{
@@ -16,6 +17,7 @@ class RisottoController extends Controller
 		$this->tipoMenu = new TipoMenuModel();
 		$this->platos = new PlatoMenuModel();
 		$this->admin = new AdministradorController();
+		$this->Comentarios = new ComentariosModel();
 		}
 
 	function index()
@@ -63,7 +65,8 @@ class RisottoController extends Controller
 				$id_plato = $_POST['id_plato'];
 				$plato = $this->platos->obtenerPlato($id_plato);
 				$tipos = $this->tipoMenu->obtenerTipoMenu();
-				$this->view->mostrarVerPlatoUsuario($tipos, $plato, $error = '');
+				$comentarios = $this->Comentarios->getComentarios($id_plato);
+				$this->view->mostrarVerPlatoUsuario($tipos, $plato, $error = '', $comentarios);
 			}
 			else
 			{

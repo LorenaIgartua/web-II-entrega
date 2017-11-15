@@ -29,7 +29,8 @@
 </footer>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+<script src="js/mustache.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script> -->
 <script type="text/javascript" src = "js/risotto.js"></script>
 </body>
 </html>

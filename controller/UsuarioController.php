@@ -3,6 +3,7 @@
 include_once ('model/UsuarioModel.php');
 include_once ('view/UsuarioView.php');
 include_once ('controller/RisottoController.php');
+include_once 'controller/SeguridadController.php';
 
 
 class UsuarioController extends Controller
@@ -11,6 +12,7 @@ class UsuarioController extends Controller
 function __construct()
 {
 	// $this->cierre = new RisottoController();
+	$this->seguridadController = new SeguridadController();
 	$this->view = new UsuarioView();
 	$this->model = new UsuarioModel();
 }
@@ -18,8 +20,17 @@ function __construct()
 
 function iniciarSesion()
 {
-	$this->view->mostrarLogin();
-}
+	// print_r ($_SESSION);
+	// die();
+	if (isset($_SESSION['USER'])) {
+
+		$usuario = $this->model->obtenerUsuario($_SESSION['USER']);
+		$this->view->mostrarLoginConSesion($usuario[0]['mail']);
+	}
+	else{
+		$this->view->mostrarLogin();
+		}
+	}
 
 function nuevoUsuario() //muestra formulario para incorporar un nuevo Usuario
 {
@@ -59,12 +70,21 @@ function verificarUsuario()
 		}
 	}
 
-	function cerrarSesion()
+	function cerrarSesionTiempo()
 		{
 		session_start();
 		session_destroy();
-		header('Location: ' . MENU);
+		$this->view->mostrarLogin('Su sesion expiro .... vuelva a conectarse');
+		// header("Location: index.php");die();
 		}
+
+		function cerrarSesion()
+			{
+			session_start();
+			session_destroy();
+			header('Location: ' . HOME);
+			// header("Location: index.php");die();
+			}
 
 	}
 

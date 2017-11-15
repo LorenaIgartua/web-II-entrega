@@ -3,34 +3,29 @@
 define('RESOURCE', 0);
 define('PARAMS', 1);
 
-include_once 'config/ConfigApi.php';
-include_once '../model/Model.php';
-include_once 'controller/LoginApiController.php';
+include_once 'config/Router.php';
+include_once 'controller/Api.php';
 include_once 'controller/RisottoApiController.php';
 
-function parseURL($url)
+
+$router = new Router();
+
+$router->AddRoute("comentarios", "GET", "RisottoApiController", "obtenerComentariosTodos");
+$router->AddRoute("comentarios/:id", "GET", "RisottoApiController", "obtenerComentarios");
+$router->AddRoute("comentarios", "POST", "RisottoApiController", "agregarComentario");
+$router->AddRoute("comentarios", "DELETE", "RisottoApiController", "borrarComentario");
+
+
+$route = $_GET['resource'];
+$array = $router->Route($route);
+
+if(sizeof($array) == 0)
+  echo "404";
+else
 {
-  $urlExploded = explode('/', trim($url,'/'));
-  $arrayReturn[ConfigApi::$RESOURCE] = $urlExploded[RESOURCE].'#'.$_SERVER['REQUEST_METHOD'];
-  $arrayReturn[ConfigApi::$PARAMS] = isset($urlExploded[PARAMS]) ? array_slice($urlExploded,1) : null;
-  return $arrayReturn;
+  $controller = $array[0];
+  $metodo = $array[1];
+  $url_params = $array[2];
+  echo (new $controller())->$metodo($url_params);
 }
-
-if(isset($_GET['resource'])){
-   $urlData = parseURL($_GET['resource']);
-    $resource = $urlData[ConfigApi::$RESOURCE];
-    if(array_key_exists($resource,ConfigApi::$RESOURCES)){
-        $params = $urlData[ConfigApi::$PARAMS];
-        $controller_method = explode('#',ConfigApi::$RESOURCES[$resource]); //Array[0] -> TareasController [1] -> index
-        $controller =  new $controller_method[0]();
-        $metodo = $controller_method[1];
-        if(isset($params) &&  $params != null){
-            echo $controller->$metodo($params);
-        }
-        else{
-            echo $controller->$metodo();
-        }
-    }
-}
-
 ?>

@@ -10,6 +10,12 @@ function mostrarLogin($error = '')
   return $this->smarty->display('templates/login.tpl');
   }
 
+  function mostrarLoginConSesion($usuario)
+    {
+    $this->smarty->assign('usuario', $usuario);
+    return $this->smarty->display('templates/loginConSesionIniciada.tpl');
+    }
+
 
 
 function crearUsuario()

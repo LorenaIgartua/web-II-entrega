@@ -36,6 +36,13 @@
       <div id="comentarios">
         <h4>Comentarios de nuestros clientes: </h3>
         <ul class="list-group">
+          <!-- {foreach from=$comentarios item=comentario}
 
+           <li class="list-group-item list-group-item-warning ">
+              <span class="badge ">{$comentario['mail']}  </span>
+             <span class="label label-warning" >Puntaje: {$comentario['puntaje']} </span>
+           </li>
+
+           {/foreach} -->
         </ul>
       </div>

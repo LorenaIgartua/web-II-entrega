@@ -18,7 +18,7 @@ class AdministradorController extends Controller
 		$this->Comentarios = new ComentariosModel();
 		$this->tipoMenu = new TipoMenuModel();
 		$this->platos = new PlatoMenuModel();
-		// $this->usuarios = new UsuarioModel();
+		$this->usuarios = new UsuarioModel();
 		$this->seguridadController = new SeguridadController();
 	}
 
