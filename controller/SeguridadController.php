@@ -1,39 +1,48 @@
 <?php
 
 class SeguridadController extends Controller
+{
 
+function __construct()
 	{
-	function __construct()
-		{
-		// session_start();
+		session_start();
+
 		if (isset($_SESSION['USER']))
-			{
-						if (time() - $_SESSION['LAST_ACTIVITY'] > 1)
-							{
-							header('Location: ' . CERRARSESION);
-							die();
-							}
-						$_SESSION['LAST_ACTIVITY'] = time();
-						}
-					 else
-						{
-						header('Location: ' . INICIOSESION);
-						die();
-						}
+		{
+				if (time() - $_SESSION['LAST_ACTIVITY'] > 50)
+				{
+					header('Location: ' . CERRARSESION);
+					die();
+				}
+				else
+			 	{
+				$_SESSION['LAST_ACTIVITY'] = time();
+				}
 		}
 
-		function admin()
+}
+
+	function esAdmin()
+		{
+			// print_r($_SESSION);
+			// die();
+		if ($_SESSION['PERFIL'] != ADMIN)
 			{
-			if ($_SESSION['PERFIL'] == ADMIN)
-			{
-				return true;
+			header('Location: ' . CERRARSESION);
+			die();
 			}
-			else
-		  {
-		  return false;
-		  }
 		}
 
+		function esUser()
+			{
+				// print_r($_SESSION);
+				// die();
+			if (!isset($_SESSION['PERFIL']))
+				{
+				header('Location: ' . INICIOSESION);
+				die();
+				}
+			}
 
 }
 ?>

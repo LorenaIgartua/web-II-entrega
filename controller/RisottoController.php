@@ -10,29 +10,23 @@ include_once 'model/TipoMenuModel.php';
 class RisottoController extends Controller
 	{
 
-		private $seguridadController;
-
 	function __construct()
 		{
-	 	session_start();
 		$this->view = new RisottoView();
 		$this->tipoMenu = new TipoMenuModel();
 		$this->platos = new PlatoMenuModel();
 		$this->admin = new AdministradorController();
 		}
 
-
 	function index()
 		{
 		$this->view->mostrarIndex();
 		}
 
-
 	function home()
 		{
 		$this->view->mostrarHome();
 		}
-
 
 	function contacto()
 		{
@@ -44,12 +38,10 @@ class RisottoController extends Controller
 		$this->view->mostrarNosotros();
 		}
 
-
 		function menuUsuario()
 		{
 			 if (isset($_SESSION['USER']) && ($_SESSION['PERFIL'] == ADMIN)) {
-				 $usuario = $_SESSION['USER'];
-				 $this->admin->menuAdmin($usuario);
+				 $this->admin->menuAdmin();
 			 }
 			else {
 			$id_menu = isset($_POST['id_menu']) ? $_POST['id_menu'] : null;
@@ -66,13 +58,15 @@ class RisottoController extends Controller
 
 		function verPlato()   /// muestra el detalle de UN plato al Usuario
 		{
-			if (!isset ($_SESSION['USER'])) {
+			if (!isset ($_SESSION['USER']))
+			{
 				$id_plato = $_POST['id_plato'];
 				$plato = $this->platos->obtenerPlato($id_plato);
 				$tipos = $this->tipoMenu->obtenerTipoMenu();
 				$this->view->mostrarVerPlatoUsuario($tipos, $plato, $error = '');
 			}
-			else {
+			else
+			{
 				$id_plato = $_POST['id_plato'];
 				$usuario = $_SESSION['USER'];
 				$plato = $this->platos->obtenerPlato($id_plato);

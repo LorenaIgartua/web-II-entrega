@@ -9,7 +9,7 @@ include_once 'controller/SeguridadController.php';
 class UsuarioController extends Controller
 
 	{
-	// private $seguridadController;
+	private $seguridadController;
 
 	function __construct()
 	{
@@ -23,6 +23,7 @@ class UsuarioController extends Controller
 
 	function nuevoComentario()
 	{
+		$this->seguridadController->esUser();
 		$id_plato = $_POST['id_plato'];
 		$this->view->mostrarFormComentario($id_plato);
 	}
