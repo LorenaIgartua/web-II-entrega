@@ -12,7 +12,7 @@ class UsuarioController extends Controller
 function __construct()
 {
 	// $this->cierre = new RisottoController();
-	$this->seguridadController = new SeguridadController();
+	// $this->seguridadController = new SeguridadController();
 	$this->view = new UsuarioView();
 	$this->model = new UsuarioModel();
 }
@@ -62,10 +62,7 @@ function verificarUsuario()
 			$_SESSION['PERFIL'] = $user[0]['perfil'];
 			header('Location: ' . MENU);
 			}
-		  else
-			{
-			$this->view->mostrarLogin('Usuario o Password incorrectos');
-			}
+		  
 			$this->view->mostrarLogin('Usuario o password incorrectos');
 		}
 	}

@@ -9,9 +9,9 @@ function __construct()
 
 		if (isset($_SESSION['USER']))
 		{
-				if (time() - $_SESSION['LAST_ACTIVITY'] > 200)
+				if (time() - $_SESSION['LAST_ACTIVITY'] > 2000)
 				{
-					header('Location: ' . CERRARSESIONTIEMPO);
+					header('Location: ' . CERRARSESION);
 					die();
 				}
 				else
